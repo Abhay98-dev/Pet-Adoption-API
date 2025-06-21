@@ -1,0 +1,26 @@
+# 🐾 Pet Adoption API (Node.js + Express)
+
+A simple REST API for managing adoptable pets using **Node.js** and **Express.js**. Built to demonstrate route modularization using `express.Router()`, with basic data validation and dynamic routing.
+
+---
+
+## 🚀 Features
+
+- ✅ Modular route handling with `express.Router()`
+- ✅ List all available pets
+- ✅ Search for pets by name (case-insensitive)
+- ✅ Add new pets with input validation
+- ✅ Returns appropriate error codes (400, 404)
+
+---
+
+## 🧰 Tech Stack
+
+- Node.js
+- Express.js
+- Postman / Thunder Client (for testing)
+- In-memory data (MongoDB integration coming soon)
+
+---
+
+

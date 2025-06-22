@@ -1,55 +1,47 @@
 const express = require('express');
 const router=express.Router()
 express.urlencoded({extended:true})
+const mongoose=require("mongoose")
+const Pet=require("../models/Pet")
 
-const Pet=[
-    {
-        name:"Leo",
-        type:"Dog"
-    },
-    {
-        name:"Mittens",
-        type:"Cat"
-    },
-    {
-        name:"Goldie",
-        type:"Fish"
+//create a new pet
+router.post("/",async(req,res)=>{
+    pet=req.body
+    try{
+        const newPet=await Pet.create(pet)
+        res.status(201).json(newPet)
     }
-]
+    catch(err){
+        console.error("Error creating pet: ",err)
+        res.status(500).json({error:"Internal Server Error"})
+    }
+})
 
-function findPetByName(name){
-    for(const pet of Pet){
-        if(pet.name.toLowerCase()===name.toLowerCase()){
-            return pet
+//get all pets
+router.get("/",async(req,res)=>{
+    try{
+        const pets=await Pet.find()
+        res.status(200).json(pets)
+    }
+    catch(err){
+        console.log("Error fetching pets: ",err)
+        res.status(500).json({error:"Internal Server Error"})
+    }
+})
+
+//get a pet by name
+router.get("/:name",async(req,res)=>{
+    const PetName=req.params.name
+    try{
+        const pet=await Pet.findOne({name:PetName})
+        if(!pet){
+            return res.status(404).json({error:"Pet not found"})
         }
+        return res.status(200).json(pet)
     }
-    if (!pet) {
-        return res.status(404).json({ error: "Pet not found" });
+    catch(err){
+        console.error("Error fetching pet: ",err)
+        res.status(500).json({error:"Internal Server Error"})
     }
-}
-
-router.get("/",(req,res)=>{
-    res.send("Pet home page")
-})
-
-router.get("/all",(req,res)=>{
-    res.json(Pet)
-})
-
-router.post("/",(req,res)=>{
-    const newPet=req.body
-    if(!newPet.name || !newPet.type){
-        res.status(400)
-        res.send("Invalid Entry!!!!")
-        return
-    }
-    Pet.push(newPet)
-    res.send("data entered succesfully")
-})
-
-router.get("/:name",(req,res)=>{
-    const petName=req.params.name
-    const pet=findPetByName(petName)
-    res.json(pet)
 })
 module.exports=router

@@ -1,16 +1,16 @@
-# 🐾 Pet Adoption API (Node.js + Express)
+# 🐾 Pet Adoption API (MongoDB + Express)
 
-A simple REST API for managing adoptable pets using **Node.js** and **Express.js**. Built to demonstrate route modularization using `express.Router()`, with basic data validation and dynamic routing.
+A full-featured REST API for managing adoptable pets using **Node.js**, **Express.js**, and **MongoDB** with **Mongoose** ODM.
 
 ---
 
 ## 🚀 Features
 
-- ✅ Modular route handling with `express.Router()`
-- ✅ List all available pets
-- ✅ Search for pets by name (case-insensitive)
-- ✅ Add new pets with input validation
-- ✅ Returns appropriate error codes (400, 404)
+- Modular route handling with `express.Router()`
+- Connects to MongoDB Atlas or local MongoDB
+- Add, list, and search pets by name
+- Input validation and 404 error handling
+- Environment variable support via `.env`
 
 ---
 
@@ -18,9 +18,20 @@ A simple REST API for managing adoptable pets using **Node.js** and **Express.js
 
 - Node.js
 - Express.js
-- Postman / Thunder Client (for testing)
-- In-memory data (MongoDB integration coming soon)
+- MongoDB
+- Mongoose
+- dotenv
 
 ---
 
+## 📁 Folder Structure
 
+PET ADOPTION API/
+├── models/
+│ └── Pet.js # Mongoose schema & model
+├── routes/
+│ └── pet.js # API routes
+├── .env # MongoDB URI
+├── index.js # Entry point
+├── package.json
+└── README.md

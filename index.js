@@ -16,7 +16,6 @@ main()
         console.error("Error connecting to MongoDB: ",err)
     })
 
-
 const router=require("./routes/pet")
 
 app.use(express.json())

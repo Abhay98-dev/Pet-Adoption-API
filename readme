@@ -1,37 +1,126 @@
-# 🐾 Pet Adoption API (MongoDB + Express)
+# 🐾 Pet Adoption API (MongoDB + Express + CRUD)
 
-A full-featured REST API for managing adoptable pets using **Node.js**, **Express.js**, and **MongoDB** with **Mongoose** ODM.
+A complete RESTful backend API for managing adoptable pets using **Node.js**, **Express.js**, and **MongoDB** with **Mongoose**. This API supports full CRUD functionality with robust error handling and dynamic filtering.
 
 ---
 
 ## 🚀 Features
 
-- Modular route handling with `express.Router()`
-- Connects to MongoDB Atlas or local MongoDB
-- Add, list, and search pets by name
-- Input validation and 404 error handling
-- Environment variable support via `.env`
+* Modular routing with `express.Router()`
+* Connected to MongoDB Atlas
+* Full CRUD operations: Create, Read, Update, Delete
+* Input validation using Mongoose schema
+* Filtering support via query parameters
+* Uses `.env` for configuration
 
 ---
 
 ## 🧰 Tech Stack
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- dotenv
+* Node.js
+* Express.js
+* MongoDB Atlas
+* Mongoose
+* dotenv
 
 ---
 
-## 📁 Folder Structure
+## 📁 Project Structure
 
-PET ADOPTION API/
+```
+pet-api/
 ├── models/
-│ └── Pet.js # Mongoose schema & model
+│   └── Pet.js           # Mongoose schema
 ├── routes/
-│ └── pet.js # API routes
-├── .env # MongoDB URI
-├── index.js # Entry point
+│   └── pet.js           # Express router for pets
+├── .env                 # MongoDB URI (not pushed)
+├── index.js             # Server entry point
 ├── package.json
 └── README.md
+```
+
+---
+
+## 📦 Setup Instructions
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/pet-api.git
+cd pet-api
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment
+
+Create a `.env` file in the root folder:
+
+```env
+Mongo_url=mongodb://127.0.0.1:27017/Pets
+```
+
+> Or use your MongoDB Atlas URI
+
+### 4. Start the server
+
+```bash
+node index.js
+```
+
+---
+
+## 📮 API Endpoints
+
+| Method | Endpoint     | Description                     |
+| ------ | ------------ | ------------------------------- |
+| GET    | `/pet`       | List all pets or filter by type |
+| GET    | `/pet/:name` | Get a pet by name               |
+| POST   | `/pet`       | Add a new pet                   |
+| PUT    | `/pet/:name` | Update a pet by name            |
+| DELETE | `/pet/:name` | Delete a pet by name            |
+
+### Sample POST Request
+
+```json
+{
+  "name": "Buddy",
+  "type": "Dog"
+}
+```
+
+### Sample Filter Request
+
+```
+GET /pet?type=Cat
+```
+
+---
+
+## 🛠 Error Responses
+
+* `400 Bad Request` – Missing fields or invalid input
+* `404 Not Found` – Pet not found
+* `500 Internal Server Error` – Database or server issues
+
+---
+
+## 🏆 Milestones
+
+* ✅ Connected MongoDB using Mongoose
+* ✅ Modular routing setup
+* ✅ Created CRUD routes
+* ✅ Schema validation + filtering support
+
+---
+
+## 🧑‍💻 Author
+
+**Abhay Chachar**
+Full-stack developer in training – building real-world backend and frontend systems.
+
+---

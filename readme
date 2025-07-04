@@ -1,126 +1,47 @@
-# 🐾 Pet Adoption API (MongoDB + Express + CRUD)
+# 🔐 Secure Pet Adoption API (Node.js + MongoDB + JWT)
 
-A complete RESTful backend API for managing adoptable pets using **Node.js**, **Express.js**, and **MongoDB** with **Mongoose**. This API supports full CRUD functionality with robust error handling and dynamic filtering.
+This is a production-ready RESTful API built using **Node.js**, **Express.js**, **MongoDB**, and **JWT authentication**. It supports user registration, login, and secure CRUD operations on pets using token-based access.
 
 ---
 
 ## 🚀 Features
 
-* Modular routing with `express.Router()`
-* Connected to MongoDB Atlas
-* Full CRUD operations: Create, Read, Update, Delete
-* Input validation using Mongoose schema
-* Filtering support via query parameters
-* Uses `.env` for configuration
+- User registration with hashed passwords (bcrypt)
+- User login with JWT authentication
+- Protected routes using middleware
+- Pet management: Add, Get, Update, Delete
+- Environment-based configuration using `.env`
+- Modular file structure (routes, models, middleware)
 
 ---
 
 ## 🧰 Tech Stack
 
-* Node.js
-* Express.js
-* MongoDB Atlas
-* Mongoose
-* dotenv
+- Node.js + Express.js
+- MongoDB + Mongoose
+- JWT (jsonwebtoken)
+- Bcrypt (password hashing)
+- dotenv (secure environment variables)
+- Postman (API testing)
 
 ---
 
-## 📁 Project Structure
+## 📁 Folder Structure
 
-```
 pet-api/
 ├── models/
-│   └── Pet.js           # Mongoose schema
+│ ├── Pet.js
+│ └── User.js
 ├── routes/
-│   └── pet.js           # Express router for pets
-├── .env                 # MongoDB URI (not pushed)
-├── index.js             # Server entry point
+│ ├── pet.js
+│ └── auth.js
+├── middleware/
+│ └── verifyToken.js
+├── .env
+├── index.js
 ├── package.json
 └── README.md
-```
 
----
-
-## 📦 Setup Instructions
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/pet-api.git
-cd pet-api
-```
-
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Configure environment
-
-Create a `.env` file in the root folder:
-
-```env
-Mongo_url=mongodb://127.0.0.1:27017/Pets
-```
-
-> Or use your MongoDB Atlas URI
-
-### 4. Start the server
-
-```bash
-node index.js
-```
-
----
-
-## 📮 API Endpoints
-
-| Method | Endpoint     | Description                     |
-| ------ | ------------ | ------------------------------- |
-| GET    | `/pet`       | List all pets or filter by type |
-| GET    | `/pet/:name` | Get a pet by name               |
-| POST   | `/pet`       | Add a new pet                   |
-| PUT    | `/pet/:name` | Update a pet by name            |
-| DELETE | `/pet/:name` | Delete a pet by name            |
-
-### Sample POST Request
-
-```json
-{
-  "name": "Buddy",
-  "type": "Dog"
-}
-```
-
-### Sample Filter Request
-
-```
-GET /pet?type=Cat
-```
-
----
-
-## 🛠 Error Responses
-
-* `400 Bad Request` – Missing fields or invalid input
-* `404 Not Found` – Pet not found
-* `500 Internal Server Error` – Database or server issues
-
----
-
-## 🏆 Milestones
-
-* ✅ Connected MongoDB using Mongoose
-* ✅ Modular routing setup
-* ✅ Created CRUD routes
-* ✅ Schema validation + filtering support
-
----
-
-## 🧑‍💻 Author
-
-**Abhay Chachar**
-Full-stack developer in training – building real-world backend and frontend systems.
-
----
+👨‍💻 Author
+Abhay Chachar
+Learning full-stack development, one secure route at a time.

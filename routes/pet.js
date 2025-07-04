@@ -3,10 +3,11 @@ const router=express.Router()
 express.urlencoded({extended:true})
 const mongoose=require("mongoose")
 const Pet=require("../models/Pet")
+const verifyToken = require("../middleware/verifyToken")
 
 //create a new pet
-router.post("/",async(req,res)=>{
-    pet=req.body
+router.post("/add",verifyToken,async(req,res)=>{
+    const pet=req.body
     try{
         const newPet=await Pet.create(pet)
         res.status(201).json(newPet)
@@ -63,7 +64,7 @@ router.get("/:name",async(req,res)=>{
     }
 })
 
-router.put("/:name",async(req,res)=>{
+router.put("/:name",verifyToken,async(req,res)=>{
     const PetName=req.params.name
     const updateData=req.body
     try{
@@ -79,7 +80,7 @@ router.put("/:name",async(req,res)=>{
     }
 })
 
-router.delete("/:name",async(req,res)=>{
+router.delete("/:name",verifyToken,async(req,res)=>{
     const PetName=req.params.name
     try{
         const deletedPet=await Pet.findOneAndDelete({name:PetName})
